@@ -23,7 +23,8 @@ function Nav() {
 
   return (
     <>
-      <nav className="bg-slate-600">
+      <div className="rounded bg-vsalmostblack m-2 p-3">
+        {/* <nav className="bg-slate-600"> */}
         <Link to="/">Home</Link>
 
         <IfAuthenticated>
@@ -37,12 +38,13 @@ function Nav() {
             {' ' + user.username}
           </p>
         </IfAuthenticated>
-        <IfNotAuthenticated>
+        {/* <IfNotAuthenticated>
           <Link to="/" onClick={handleSignIn}>
             Sign In
           </Link>
-        </IfNotAuthenticated>
-      </nav>
+        </IfNotAuthenticated> */}
+        {/* </nav> */}
+      </div>
     </>
   )
 }

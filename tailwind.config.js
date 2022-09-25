@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         vsblack: '#1e1e1e',
+        vsalmostblack: '#252526',
         vsgreen: '#1e4f3e',
         vslightblue: '#67cdfe',
         vsbrightyellow: '#ffd710',
