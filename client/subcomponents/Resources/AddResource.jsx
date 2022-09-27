@@ -35,7 +35,7 @@ function AddResource(props) {
 
   return (
     <form
-      className={`${showAdd ? '' : 'hidden'} bg-red-500`}
+      className={`${showAdd ? '' : 'hidden'} bg-black-500 `}
       onSubmit={handleAddResourceButton}
     >
       <label>
@@ -45,6 +45,8 @@ function AddResource(props) {
           name="description"
           onChange={handleChange}
           value={form.description}
+          className="text-vsblack  rounded w-2/6"
+          placeholder="  Add your description here"
         ></input>
       </label>
       <label>
@@ -54,6 +56,8 @@ function AddResource(props) {
           name="url"
           onChange={handleChange}
           value={form.url}
+          className="text-vsblack  rounded w-1/6"
+          placeholder="  Add url here"
         ></input>
       </label>
       <label>
@@ -63,9 +67,12 @@ function AddResource(props) {
           name="icon"
           onChange={handleChange}
           value={form.icon}
+          className="text-vsblack  rounded w-1/6"
         ></input>
       </label>
-      <button>Add Resources</button>
+      <button className="inline ml-2 absolute right-1 bottom-1">
+        Add Resources
+      </button>
     </form>
   )
 }
