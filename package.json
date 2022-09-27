@@ -33,13 +33,17 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "@vscode/sqlite3": "^5.0.7",
+    "autoprefixer": "^10.4.12",
+    "daisyui": "^2.31.0",
     "express": "^4.17.1",
     "express-jwt": "^6.1.0",
     "express-jwt-authz": "^2.4.1",
     "jwks-rsa": "^2.0.4",
     "knex": "^1.0.7",
+    "postcss": "^8.4.16",
     "react-redux": "^7.2.5",
-    "sqlite3": "^5.1.1"
+    "sqlite3": "^5.1.1",
+    "theme-change": "^2.2.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",

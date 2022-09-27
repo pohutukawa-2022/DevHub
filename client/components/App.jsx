@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { themeChange } from 'theme-change'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useCacheUser } from '../auth0-utils'
 import { useAuth0 } from '@auth0/auth0-react'
