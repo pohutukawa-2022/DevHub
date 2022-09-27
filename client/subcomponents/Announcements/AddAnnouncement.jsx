@@ -24,6 +24,7 @@ function AddAnnouncement(props) {
       date: testDate, // TODO: Change to today's date
       user_id: 2, // TODO: import current USER_ID
     })
+    props.loadAnnouncements()
   }
 
   function handleChange(e) {

@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 
 // GET from api/v1/:date
 router.get('/:date', async (req, res) => {
-  const selectedDate = new Date(req.params.date).toDateString()
+  const selectedDate = new Date(Number(req.params.date)).toDateString()
 
   try {
     const resources = await db.getAllResources()

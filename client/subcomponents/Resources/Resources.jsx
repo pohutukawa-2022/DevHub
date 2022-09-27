@@ -9,11 +9,11 @@ function Resources() {
   // const [error, setError] = useState('')
 
   // TODO: Change to today's date, now for testing purpose
-  const testDate = new Date('October 4, 2022, 12:05:00')
+  const testDate = new Date('September 7, 2022, 12:05:00')
 
   async function loadResources() {
     try {
-      const allResources = await getResourcesByDate(testDate.toDateString())
+      const allResources = await getResourcesByDate(Date.parse(testDate))
       setResources(allResources)
     } catch (error) {
       console.error(error.message)
@@ -32,7 +32,7 @@ function Resources() {
 
   useEffect(() => {
     loadResources()
-  }, [resources])
+  }, [])
 
   return (
     <div className="flex flex-col relative bg-vslightblack rounded p-1.5 m-2 mt-1 text-left">
@@ -56,7 +56,11 @@ function Resources() {
         alt="add"
       />
       {/* <button onClick={showAddButton}>Add</button> */}
-      <AddResource showAdd={showAdd} setShowAdd={setShowAdd} />
+      <AddResource
+        loadResources={loadResources}
+        showAdd={showAdd}
+        setShowAdd={setShowAdd}
+      />
     </div>
   )
 }

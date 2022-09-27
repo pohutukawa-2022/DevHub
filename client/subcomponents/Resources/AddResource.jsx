@@ -5,7 +5,7 @@ function AddResource(props) {
   const showAdd = props.showAdd
 
   // TODO: Change to today's date, now for testing purpose
-  const testDate = new Date('October 4, 2022, 12:05:00')
+  const testDate = new Date('September 7, 2022, 12:05:00')
 
   const [form, setForm] = useState({
     description: '',
@@ -26,6 +26,7 @@ function AddResource(props) {
       date: testDate, // TODO: Change to today's date
       user_id: 2, // TODO: import current USER_ID
     })
+    props.loadResources()
   }
 
   function handleChange(e) {

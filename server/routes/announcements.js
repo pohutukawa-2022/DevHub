@@ -1,5 +1,4 @@
 const express = require('express')
-const { async } = require('regenerator-runtime')
 const checkJwt = require('../auth0')
 const db = require('../db/announcements')
 
@@ -20,8 +19,8 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:date', async (req, res) => {
-  const currentDate = new Date(req.params.date).toDateString()
-
+  const currentDate = new Date(Number(req.params.date)).toDateString()
+  console.log(currentDate)
   try {
     const announcements = await db.getAllAnnouncements()
     const currentDateAnnouncements = announcements

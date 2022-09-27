@@ -11,11 +11,13 @@ function Announcements() {
   const [showAdd, setShowAdd] = useState(false)
 
   //TO DO make date dynamic
-  const testDate = new Date('October 3, 2022, 12:05:00')
+  const testDate = new Date('September 7, 2022, 12:05:00')
 
   async function loadAnnouncements() {
     try {
-      const allAnnouncements = await getAnnouncementsByDate(testDate)
+      const allAnnouncements = await getAnnouncementsByDate(
+        Date.parse(testDate)
+      )
       setAnnouncements(allAnnouncements)
     } catch (error) {
       console.error(error.message)
@@ -28,7 +30,7 @@ function Announcements() {
 
   useEffect(() => {
     loadAnnouncements()
-  }, [announcements])
+  }, [])
 
   function handelDelete(id) {
     deleteAnnouncement(id)
@@ -61,7 +63,11 @@ function Announcements() {
       </ul>
 
       {/* <button onClick={showAddButton}>Add</button> */}
-      <AddAnnouncement showAdd={showAdd} setShowAdd={setShowAdd} />
+      <AddAnnouncement
+        loadAnnouncements={loadAnnouncements}
+        showAdd={showAdd}
+        setShowAdd={setShowAdd}
+      />
     </div>
   )
 }
