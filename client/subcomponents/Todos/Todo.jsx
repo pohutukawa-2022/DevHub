@@ -4,39 +4,42 @@ import { updateTodo, deleteTodo } from '../../api/todos'
 
 function Todo(props) {
   const {
-    id,
+    user_todos_id,
     user_id,
+    todo_id,
     date,
     content,
     challenge_link,
     inTrello,
     isDone,
     isPersonal,
+    currentUserId,
   } = props.todo
 
-  const { loadTodos } = props.loadTodos
+  const loadTodos = props.loadTodos
 
   function handleBoxChecked() {
-    // on click change the value in the db
-    const newTodo = { ...props.todo, isDone: !props.todo.isDone }
-    updateTodo(newTodo)
-      .then(() => loadTodos())
+    const newTodo = {
+      ...props.todo,
+      isDone: !props.todo.isDone,
+    }
+
+    updateTodo(newTodo, currentUserId)
+      .then(loadTodos())
       .catch(() => {})
   }
 
   function handleDelete() {
-    // on click change the value in the db
-    console.log('Delete')
-    // deleteTodo(id)
-    //   .then(() => loadTodos())
-    //   .catch(() => {})
+    deleteTodo(user_todos_id)
+      .then(() => loadTodos())
+      .catch(() => {})
   }
 
   return (
     <>
-      <div className={isDone ? 'line-through text-vsblack	' : ' text-vsgreen'}>
+      <div className={isDone ? 'line-through text-vsgrey	' : ''}>
         <input
-          className="accent-gray-300"
+          className="mr-2 accent-vsgrey"
           onChange={handleBoxChecked}
           type="checkbox"
           name=""
@@ -52,10 +55,25 @@ function Todo(props) {
           content
         )}
 
-        {inTrello && <span className="text-sky-400">Trello</span>}
-        {isPersonal && (
+
+        {!!inTrello && (
+          <span className="">
+            <img
+              src="images/trelloico.png"
+              className="inline ml-2 mb-1 w-4"
+              alt="trello"
+            />
+          </span>
+        )}
+
+        {!!isPersonal && (
           <span className=" text-zinc-400" onClick={handleDelete}>
-            Delete
+             <img
+              src="images/deleteico.png"
+              className="inline ml-2 mb-1 w-4"
+              alt="delete"
+            />
+           
           </span>
         )}
       </div>

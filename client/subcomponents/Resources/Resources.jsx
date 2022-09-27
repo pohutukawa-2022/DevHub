@@ -35,8 +35,8 @@ function Resources() {
   }, [resources])
 
   return (
-    <div>
-      <h1>Resources</h1>
+    <div className="flex flex-col relative bg-vslightblack rounded p-1.5 m-2 mt-1 text-left">
+      <span className="text-vsgreen">Resources:</span>
       <ul className="">
         {resources.map((resource) => {
           return (
@@ -49,8 +49,13 @@ function Resources() {
           )
         })}
       </ul>
-
-      <button onClick={showAddButton}>Add</button>
+      <img
+        src="images/addico.png"
+        className="absolute top-2 right-1"
+        onClick={showAddButton}
+        alt="add"
+      />
+      {/* <button onClick={showAddButton}>Add</button> */}
       <AddResource showAdd={showAdd} setShowAdd={setShowAdd} />
     </div>
   )

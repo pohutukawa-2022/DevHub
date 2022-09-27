@@ -37,8 +37,8 @@ function Announcements() {
   }
 
   return (
-    <div className="bg-[#A1C0E5] text-center">
-      <h1>ANNOUNCEMENTS:</h1>
+    <div className="flex flex-col relative bg-vslightblack rounded p-1.5 m-2 mt-1 text-left">
+      <span className="text-vspink">Announcements:</span>
       <ul className="">
         {announcements.map((announcement) => {
           return (
@@ -49,18 +49,18 @@ function Announcements() {
               <a className="align-middle" href={announcement.url}>
                 {`${announcement.message}`}
               </a>
-              <button
+              {/* <button
                 className="text-red-700"
                 onClick={() => handelDelete(announcement.id)}
               >
                 DELETE
-              </button>
+              </button> */}
             </li>
           )
         })}
       </ul>
 
-      <button onClick={showAddButton}>Add</button>
+      {/* <button onClick={showAddButton}>Add</button> */}
       <AddAnnouncement showAdd={showAdd} setShowAdd={setShowAdd} />
     </div>
   )

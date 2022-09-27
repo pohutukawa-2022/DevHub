@@ -4,6 +4,10 @@ module.exports = {
   getAllTodos,
   getTodosByUserId,
   getTodosByUserIdAndDate,
+  updateTodo,
+  addTodo,
+  addMultipleTodo,
+  deleteTodo,
 }
 
 // sort by date
@@ -19,7 +23,8 @@ function getAllTodos(db = connection) {
     .join('todos', 'user_todos.todo_id', 'todos.id')
     .join('users', 'user_todos.user_id', 'users.id')
     .select(
-      'todos.id as id',
+      'user_todos.id as user_todos_id',
+      'todos.id as todo_id',
       'users.id as user_id',
       'publish_date as date',
       'content',
@@ -35,61 +40,55 @@ function getTodosByUserId(id) {
   return getAllTodos().where('user_id', id)
 }
 
-//GET todos by user id
+//GET todos by user id and date
 function getTodosByUserIdAndDate(id, date) {
   return getAllTodos().where('users_id', id).where('publish_date', date)
 }
 
-// function sort(fruitArray) {
-//   const allFruits = [...fruitArray]
-//   allFruits.sort((a, b) => a.id - b.id)
-//   return allFruits
-// }
+function addTodo(todo, usertodo, db = connection) {
+  return db('todos')
+    .insert(todo)
+    .then((id) => db('user_todos').insert({ ...usertodo, todo_id: id }))
+}
 
-// async function getTodos(db = connection) {
-//   return db('todos')
-//     .select(
-//       'id',
-//       'name',
-//       'average_grams_each as averageGramsEach',
-//       'added_by_user as addedByUser'
-//     )
-//     .then(sort)
-// }
+function addMultipleTodo(todo, usersTodos, db = connection) {
+  const { publish_date, content, challenge_link, is_trello } = todo
+  return db('todos')
+    .insert({ publish_date, content, challenge_link, is_trello })
+    .then(([id]) => {
+      return Promise.all(
+        usersTodos.map((userTodo) => {
+          return db('user_todos').insert({ ...userTodo, todo_id: id })
+        })
+      )
+    })
+    .then((results) => results.flat())
+}
 
-// async function addFruit(fruit, db = connection) {
-//   return db('fruits')
-//     .insert(fruit)
-//     .then(() => db)
-//     .then(getFruits)
-//     .then(sort)
-// }
+function updateTodo(newTodo, db = connection) {
+  const { id, is_done } = newTodo
+  return (
+    db('user_todos')
+      .where('id', id)
+      .update({ is_done })
+      // //.where('user_id', newTodo.user_id)
+      // .then(() => {
+      //   return db('user_todos').where('user_id', user_id).update({ is_done })
+      // })
+      .then(() => db)
+  )
+}
 
-// async function updateFruit(newFruit, user, db = connection) {
-//   return db('fruits')
-//     .where('id', newFruit.id)
-//     .first()
-//     .then((fruit) => authorizeUpdate(fruit, user))
-//     .then(() => {
-//       return db('fruits').where('id', newFruit.id).update(newFruit)
-//     })
-//     .then(() => db)
-//     .then(getFruits)
-//     .then(sort)
-// }
-
-// async function deleteFruit(id, auth0Id, db = connection) {
-//   return db('fruits')
-//     .where('id', id)
-//     .first()
-//     .then((fruit) => authorizeUpdate(fruit, auth0Id))
-//     .then(() => {
-//       return db('fruits').where('id', id).delete()
-//     })
-//     .then(() => db)
-//     .then(getFruits)
-//     .then(sort)
-// }
+async function deleteTodo(id, db = connection) {
+  return db('todos')
+    .where('id', id)
+    .first()
+    .delete()
+    .then(() => {
+      return db('user_todos').where('todo_id', id).delete()
+    })
+    .then(() => db)
+}
 
 // function authorizeUpdate(fruit, auth0Id) {
 //   if (fruit.added_by_user !== auth0Id) {
