@@ -52,7 +52,7 @@ function Nav() {
           />
         </div>
 
-        {/* <nav>
+        <nav>
           <Link to="/">Home</Link>
 
           <IfAuthenticated>
@@ -71,7 +71,7 @@ function Nav() {
               Sign In
             </Link>
           </IfNotAuthenticated>
-        </nav> */}
+        </nav>
       </div>
     </>
   )
