@@ -77,14 +77,16 @@ test('GET api/v1/todos/:id returns todos by user ID', () => {
       })
   })
 })
-// test('GET /users/:id should fail when passing a non-numeric id', () => {
-//   return request(server)
-//     .get('/users/camel')
-//     .expect(500) // Internal error
-//     .then((res) => {
-//       expect(res.body.error).toBe('invalid id format')
-//     })
-// })
+
+test('GET /api/v1/todos/:id should fail if id is not a number', () => {
+  return request(server)
+    .get('/api/v1/todos/banana')
+    .expect(500) // Internal error
+    .then((res) => {
+      console.log(res)
+      expect(res.body.error).toBe('id must be a number!')
+    })
+})
 
 // test('POST /users should return 201 status code', () => {
 //   db.addNewUser.mockImplementation((user) => {
