@@ -19,7 +19,7 @@ function Nav() {
   function handleSignIn(e) {
     e.preventDefault()
     loginWithRedirect({
-      scope: 'role:member',
+      scope: 'role:member'
     })
   }
 
@@ -43,35 +43,27 @@ function Nav() {
         <div className="pt-3 text-2xl text-vsgrey font-black content-center">
           &gt;
         </div>
-        <div className="pt-5 ml-5 content-center">Hello, Rong!</div>
+        <div className="pt-5 ml-5 content-center">
+          Hello, {user.first_name}!
+        </div>
         <div className="w-16 absolute right-0 top-0">
-          <img
-            className="rounded-full "
-            src="server/db/seeds/profilepictures/rong.jpeg"
-            alt=""
-          />
+          <Link to="/" onClick={handleLogoff}>
+            <img className="rounded-full " src={user.profile_picture} alt="" />
+          </Link>
         </div>
 
-        {/* <nav>
-          <Link to="/">Home</Link>
-
+        <nav>
           <IfAuthenticated>
             <Link to="/" onClick={handleLogoff}>
               Log off
             </Link>
-            <p>
-              <span role="img" alt={user?.icon}>
-                {user?.icon}
-              </span>
-              {' ' + user.username}
-            </p>
           </IfAuthenticated>
           <IfNotAuthenticated>
             <Link to="/" onClick={handleSignIn}>
               Sign In
             </Link>
           </IfNotAuthenticated>
-        </nav> */}
+        </nav>
       </div>
     </>
   )

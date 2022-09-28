@@ -35,7 +35,6 @@ function Resources() {
   }, [])
 
   function isUsers(id) {
-    console.log(id)
     if (id == 2) return true
     else return false
   }

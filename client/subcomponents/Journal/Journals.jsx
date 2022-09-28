@@ -16,7 +16,6 @@ function Journals() {
 
   async function getJournal() {
     const journal1 = await getJournalByIdNDate(testId, Date.parse(testDate))
-    console.log(journal1)
     setJournal(journal1)
   }
 
