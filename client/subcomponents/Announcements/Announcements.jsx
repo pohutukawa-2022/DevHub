@@ -1,4 +1,3 @@
-export default Announcements
 import React, { useState, useEffect } from 'react'
 import AddAnnouncement from './AddAnnouncement'
 import {
@@ -72,3 +71,4 @@ function Announcements({ id, date }) {
     </>
   )
 }
+export default Announcements

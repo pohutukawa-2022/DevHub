@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Todo from './Todo'
 import { getTodosByUserId } from '../../api/todos'
 import AddTodo from './AddTodo'
-import AdminAddTodo from './AdminAddTodo'
 import { useSelector } from 'react-redux'
 
 function Todos({ date }) {
@@ -14,17 +13,17 @@ function Todos({ date }) {
   function loadTodos() {
     getTodosByUserId(user.id)
       .then((todos) => {
+        console.log(todos, 'here')
         setTodos(todos)
       })
       .catch(() => {
         return false
       })
-    return true
   }
 
   useEffect(() => {
-    loadTodos(date)
-  }, [date])
+    loadTodos()
+  }, [date, user.id])
 
   function handleClick(event) {
     event.preventDefault()
@@ -45,14 +44,12 @@ function Todos({ date }) {
           />
         ))}
 
-        {
-          <img
-            src="../images/addico.png"
-            className="absolute w-7 top-1 right-1"
-            onClick={handleClick}
-            alt="add"
-          />
-        }
+        <img
+          src="../images/addico.png"
+          className="absolute w-7 top-1 right-1"
+          onClick={handleClick}
+          alt="add"
+        />
 
         {showAdd && (
           <div>

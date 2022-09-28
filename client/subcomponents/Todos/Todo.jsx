@@ -25,7 +25,7 @@ function Todo(props) {
     }
 
     updateTodo(newTodo, currentUserId)
-      .then(loadTodos())
+      .then(() => loadTodos())
       .catch(() => {})
   }
 

@@ -14,7 +14,7 @@ export function getTodosByUserId(userId) {
   return request
     .get(`${rootUrl}/todos/${userId}`)
     .then((res) => {
-      res.json({ todos: res.body.todos })
+      return res.body.todos
     })
     .catch(logError)
 }

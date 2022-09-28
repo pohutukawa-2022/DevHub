@@ -1,17 +1,10 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
-=======
-import React, { useEffect } from 'react'
-import { themeChange } from 'theme-change'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useCacheUser } from '../auth0-utils'
->>>>>>> theme-attempt
 import { useAuth0 } from '@auth0/auth0-react'
 import { getUser } from '../api/api'
 
 import Nav from './Nav'
-import Register from './Register'
 import Cohort from './Cohort'
 import Profile from '../subcomponents/Profile/Profile'
 import MyProfile from '../subcomponents/Profile/MyProfile'
@@ -20,14 +13,11 @@ import Todos from '../subcomponents/Todos/Todos'
 
 import Announcements from '../subcomponents/Announcements/Announcements'
 import Resources from '../subcomponents/Resources/Resources'
-import Announcments from '../subcomponents/Announcements/Announcements'
 import Journals from '../subcomponents/Journal/Journals'
 import OnTheFloor from '../views/user/OnTheFloor'
-import ThemeSwitch from '../subcomponents/ThemeSwitch/ThemeSwitch'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { clearLoggedInUser, updateLoggedInUser } from '../slices/user'
-import { useCacheUser } from '../auth0-utils'
 
 function App() {
   useCacheUser()
@@ -66,7 +56,6 @@ function App() {
 
   return (
     <>
-<<<<<<< HEAD
       <Nav />
       {loading ? (
         <p>Loading</p>
@@ -87,7 +76,7 @@ function App() {
                     element={
                       <>
                         <Todos date={date} />
-                        <Announcments id={user.id} date={date} />
+                        <Announcements id={user.id} date={date} />
                         <Resources id={user.id} date={date} />
                         <OnTheFloor />
                         <Journals id={user.id} date={date} />
@@ -103,28 +92,6 @@ function App() {
               </div>
             </div>
           </div>
-=======
-      <div className="bg-vsblack">
-        <div className="flex flex-col justify-center w-auto text-center  text-vslightblue">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Nav />
-                  <Todos />
-                  <Announcments />
-                  <Resources />
-                  <OnTheFloor />
-                  <Journal />
-                </>
-              }
-            />
-            <Route path="/:id/myprofile" element={<MyProfile />} />
-            <Route path="/cohort" element={<Cohort />} />
-            <Route path="/profile/:id" element={<Profile />} />
-          </Routes>
->>>>>>> theme-attempt
         </div>
       )}
     </>
