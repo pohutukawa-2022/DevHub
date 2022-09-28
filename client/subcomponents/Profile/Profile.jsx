@@ -26,11 +26,25 @@ function Profile() {
     <>
       {profilesInfo.map((profile) => {
         return (
-          <h1 key={profile.id}>
-            {profile.first_name} {profile.last_name} {profile.cohort}
-            {profile.pronouns} <a href={profile.github_link}> Github </a>
-            <img src={profile.profile_picture} alt={`${profile.first_name}`} />
-          </h1>
+          <>
+            <div className="bg-vslightblack">
+              {profile.first_name} {profile.last_name}{' '}
+            </div>
+            <div className="flex justify-center">
+              <img
+                className="rounded-full"
+                src={profile.profile_picture}
+                alt={`${profile.first_name}`}
+              />
+            </div>
+            <h1 className="text-vspink" key={profile.id}>
+              <div>{profile.cohort}</div>
+              <div>{profile.pronouns}</div>{' '}
+              <div>
+                <a href={profile.github_link}> Github </a>
+              </div>
+            </h1>
+          </>
         )
       })}
     </>

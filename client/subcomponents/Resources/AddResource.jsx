@@ -9,7 +9,7 @@ function AddResource(props) {
     url: '',
     icon: '../images/sharing.png',
     date: props.date, // TODO: Change to today's date
-    user_id: Number(props.id)
+    user_id: Number(props.id),
   })
 
   useEffect(() => {

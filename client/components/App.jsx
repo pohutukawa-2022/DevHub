@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+=======
+import React, { useEffect } from 'react'
+import { themeChange } from 'theme-change'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useCacheUser } from '../auth0-utils'
+>>>>>>> theme-attempt
 import { useAuth0 } from '@auth0/auth0-react'
 import { getUser } from '../api/api'
 
@@ -59,6 +66,7 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
       <Nav />
       {loading ? (
         <p>Loading</p>
@@ -95,6 +103,28 @@ function App() {
               </div>
             </div>
           </div>
+=======
+      <div className="bg-vsblack">
+        <div className="flex flex-col justify-center w-auto text-center  text-vslightblue">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Nav />
+                  <Todos />
+                  <Announcments />
+                  <Resources />
+                  <OnTheFloor />
+                  <Journal />
+                </>
+              }
+            />
+            <Route path="/:id/myprofile" element={<MyProfile />} />
+            <Route path="/cohort" element={<Cohort />} />
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
+>>>>>>> theme-attempt
         </div>
       )}
     </>

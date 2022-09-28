@@ -21,12 +21,12 @@ function AddTodo(props) {
       challenge_link: '',
       is_trello: false,
       publish_date: props.date,
-      created_by_id: Number(user.id)
+      created_by_id: Number(user.id),
     }
     const newUserTodo = {
       is_personal: true,
       is_done: false,
-      user_id: Number(user.id)
+      user_id: Number(user.id),
     }
 
     addTodo(newTodo, newUserTodo)
@@ -43,6 +43,7 @@ function AddTodo(props) {
             className="text-vsblack  rounded w-5/6"
             onChange={handleChange}
             name="newTodo"
+            placeholder=" Add your todo here"
           />
           <img
             src="../images/addico.png"
