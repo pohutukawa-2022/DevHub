@@ -36,8 +36,8 @@ function getAllTodos(db = connection) {
 }
 
 //GET todos by user id
-function getTodosByUserId(id) {
-  return getAllTodos().where('user_id', id)
+function getTodosByUserId(id, db = connection) {
+  return getAllTodos(db).where('user_id', id)
 }
 
 //GET todos by user id and date
@@ -67,20 +67,15 @@ function addMultipleTodo(todo, usersTodos, db = connection) {
 
 function updateTodo(newTodo, db = connection) {
   const { id, is_done } = newTodo
-  return (
-    db('user_todos')
-      .where('id', id)
-      .update({ is_done })
-      // //.where('user_id', newTodo.user_id)
-      // .then(() => {
-      //   return db('user_todos').where('user_id', user_id).update({ is_done })
-      // })
-      .then(() => db)
-  )
+  return db('user_todos').where('id', id).update({ is_done })
+  // //.where('user_id', newTodo.user_id)
+  // .then(() => {
+  //   return db('user_todos').where('user_id', user_id).update({ is_done })
+  // })
+  // .then(() => getAllTodos())
 }
 
 async function deleteTodo(id, db = connection) {
-  console.log('from delete db', id)
   return db('user_todos')
     .where('id', id)
     .delete()
