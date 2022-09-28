@@ -10,9 +10,7 @@ function getAllJournals(db = connection) {
   return db('journals').select()
 }
 
-function updateJournal(id, date, updatedJournal, db = connection) {
+function updateJournal(newJournal, db = connection) {
   return db('journals')
-    .where('user_id', '=', id)
-    .where('date', '=', date)
-    .update({ content: updatedJournal.content })
+    .insert(newJournal)
 }

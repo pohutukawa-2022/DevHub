@@ -14,7 +14,7 @@ import Todos from '../subcomponents/Todos/Todos'
 import Announcements from '../subcomponents/Announcements/Announcements'
 import Resources from '../subcomponents/Resources/Resources'
 import Announcments from '../subcomponents/Announcements/Announcements'
-import Journal from '../subcomponents/Journal/Journal'
+import Journals from '../subcomponents/Journal/Journals'
 import OnTheFloor from '../views/user/OnTheFloor'
 import ThemeSwitch from '../subcomponents/ThemeSwitch/ThemeSwitch'
 
@@ -69,7 +69,7 @@ function App() {
               <Announcments />
               <Resources />
               <OnTheFloor />
-              <Journal />
+              <Journals />
             </div>
           </div>
         </div>

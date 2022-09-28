@@ -5,13 +5,13 @@ const rootUrl = '/api/v1'
 export function getJournalByIdNDate(id, date) {
   return request
     .get(`${rootUrl}/journal/${id}/${date}`)
-    .then((res) => res.body.journalsByDateNId[0])
+    .then((res) => res.body.journalsByDateNId)
     .catch(logError)
 }
 
-export function updateJournalByIdNDate(id, date, journal) {
+export function addJournalByIdNDate(journal) {
   return request
-    .post(`${rootUrl}/journal/${id}/${date}`)
+    .post(`${rootUrl}/journal/${journal.user_id}/${journal.date}`)
     .send(journal)
     .catch(logError)
 }

@@ -29,12 +29,10 @@ router.get('/:id/:date', async (req, res) => {
 })
 
 router.post('/:id/:date', async (req, res) => {
-  const selectedId = Number(req.params.id)
-  const selectedDate = new Date(req.params.date)
-  const updatedJournal = req.body
+  const newJournal = req.body
 
   try {
-    await db.updateJournal(selectedId, selectedDate, updatedJournal)
+    await db.updateJournal(newJournal)
   } catch (err) {
     console.error(err)
     res.status(500).send(err.message)

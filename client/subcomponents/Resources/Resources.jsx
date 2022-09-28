@@ -27,7 +27,7 @@ function Resources() {
   }
 
   function showAddButton() {
-    setShowAdd(true)
+    setShowAdd(!showAdd)
   }
 
   useEffect(() => {
