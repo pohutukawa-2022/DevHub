@@ -34,9 +34,8 @@ router.get('/:id/:currentDate', async (req, res) => {
 // GET by user id
 router.get('/:id', async (req, res) => {
   const userId = Number(req.params.id)
-  console.log("hitting get")
   if (isNaN(userId)) {
-    res.status(500).json({error: 'id must be a number!' })
+    res.status(500).json({ error: 'id must be a number!' })
     return
   }
 

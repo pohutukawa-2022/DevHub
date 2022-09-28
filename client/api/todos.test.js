@@ -83,27 +83,6 @@ test('GET /api/v1/todos/:id should fail if id is not a number', () => {
     .get('/api/v1/todos/banana')
     .expect(500) // Internal error
     .then((res) => {
-      console.log(res)
       expect(res.body.error).toBe('id must be a number!')
     })
 })
-
-// test('POST /users should return 201 status code', () => {
-//   db.addNewUser.mockImplementation((user) => {
-//     console.log(user)
-//     return Promise.resolve()
-//   })
-
-//   const userData = {
-//     name: 'Bryden',
-//     email: 'goingToMelbourne@here.com',
-//   }
-
-//   return request(server)
-//     .post('/users')
-//     .send(userData)
-//     .expect(201) // Created
-//     .then((res) => {
-//       expect(res.status).toBe(201) // Created
-//     })
-// })
