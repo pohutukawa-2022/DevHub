@@ -46,12 +46,24 @@ function App() {
     <>
       <div className="bg-vsblack">
         <div className="flex flex-col justify-center w-auto text-center  text-vslightblue">
-          <Nav />
-          <Todos />
-          <Announcments />
-          <Resources />
-          <OnTheFloor />
-          <Journal />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Nav />
+                  <Todos />
+                  <Announcments />
+                  <Resources />
+                  <OnTheFloor />
+                  <Journal />
+                </>
+              }
+            />
+            <Route path="/:id/myprofile" element={<MyProfile />} />
+            <Route path="/cohort" element={<Cohort />} />
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
         </div>
       </div>
     </>

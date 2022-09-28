@@ -40,7 +40,7 @@ function AddResource(props) {
       onSubmit={handleAddResourceButton}
     >
       <label>
-        <span>Description:</span>
+        <span>Description: </span>
         <input
           type="text"
           name="description"
@@ -51,7 +51,7 @@ function AddResource(props) {
         ></input>
       </label>
       <label>
-        <span>URL:</span>
+        <span> URL: </span>
         <input
           type="text"
           name="url"
@@ -62,7 +62,7 @@ function AddResource(props) {
         ></input>
       </label>
       <label>
-        <span>Icon:</span>
+        <span> Icon: </span>
         <input
           type="text"
           name="icon"
