@@ -6,17 +6,17 @@ function OnTheFloor(props) {
       <span className="text-vsgreen text-lg">On the floor now:</span>
       <div className="flex flex-row">
         <img
-          src="images/ahmad.jfif "
+          src="../images/ahmad.jfif "
           className="rounded-full w-20 m-1"
           alt="onthefloor"
         />
         <img
-          src="images/clem.jfif "
+          src="../images/clem.jfif "
           className="rounded-full w-20 m-1"
           alt="onthefloor"
         />
         <img
-          src="images/alex.jfif "
+          src="../images/alex.jfif "
           className="rounded-full w-20 m-1"
           alt="onthefloor"
         />

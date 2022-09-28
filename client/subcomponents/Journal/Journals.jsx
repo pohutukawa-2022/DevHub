@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { getJournalByIdNDate, addJournalByIdNDate } from '../../api/journal'
 
-function Journals() {
-  // TODO: remove testId and import from useParams
-  const testId = 2
-  const testDate = new Date('September 6, 2022, 12:05:00')
-
+function Journals({ id, date }) {
   const [showAdd, setShowAdd] = useState(false)
   const [journal, setJournal] = useState([])
   const [newJournal, setNewJournal] = useState({
-    user_id: testId,
-    date: testDate,
+    user_id: id,
+    date: date,
     content: ''
   })
 
   async function getJournal() {
-    const journal1 = await getJournalByIdNDate(testId, Date.parse(testDate))
-    console.log(journal1)
+    const journal1 = await getJournalByIdNDate(id, Date.parse(date))
     setJournal(journal1)
   }
 
   useEffect(() => {
     getJournal()
-  }, [])
+    setNewJournal((newJournal) => ({ ...newJournal, date: date }))
+  }, [date])
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setShowAdd(!showAdd)
-    setNewJournal({ ...newJournal, content: '' })
-    getJournal()
-    await addJournalByIdNDate(newJournal)
+    try {
+      await addJournalByIdNDate(newJournal)
+      showAddButton()
+      setNewJournal({ ...newJournal, content: '' })
+      getJournal()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   function handleJournal(e) {
@@ -51,7 +51,7 @@ function Journals() {
           })}
         </ul>
         <img
-          src="images/addico.png"
+          src="../images/addico.png"
           className="absolute w-7 top-2 right-1"
           alt="add"
           onClick={showAddButton}

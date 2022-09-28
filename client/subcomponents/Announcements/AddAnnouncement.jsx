@@ -4,14 +4,11 @@ import { addAnnouncement } from '../../api/announcements'
 function AddAnnouncement(props) {
   const showAdd = props.showAdd
 
-  // TODO: Change to today's date, now for testing purpose
-  const testDate = new Date('October 3, 2022, 12:05:00')
-
   const [form, setForm] = useState({
     message: '',
     url: '',
-    date: testDate, // TODO: Change to today's date
-    user_id: 2, // TODO: import current USER_ID
+    date: props.date, // TODO: Change to today's date
+    user_id: Number(props.id) // TODO: import current USER_ID
   })
 
   async function handleAddAnnouncementButton(e) {
@@ -22,7 +19,7 @@ function AddAnnouncement(props) {
       message: '',
       url: '',
       date: testDate, // TODO: Change to today's date
-      user_id: 2, // TODO: import current USER_ID
+      user_id: 2 // TODO: import current USER_ID
     })
     props.loadAnnouncements()
   }

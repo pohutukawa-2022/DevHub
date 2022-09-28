@@ -1,31 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { addResource } from '../../api/resources'
 
 function AddResource(props) {
   const showAdd = props.showAdd
 
-  // TODO: Change to today's date, now for testing purpose
-  const testDate = new Date('September 7, 2022, 12:05:00')
-
   const [form, setForm] = useState({
     description: '',
     url: '',
-    icon: 'images/sharing.png',
-    date: testDate, // TODO: Change to today's date
-    user_id: 2, // TODO: import current USER_ID
+    icon: '../images/sharing.png',
+    date: props.date, // TODO: Change to today's date
+    user_id: Number(props.id)
   })
+
+  useEffect(() => {
+    setForm((form) => ({ ...form, date: props.date }))
+  }, [props.date])
 
   async function handleAddResourceButton(e) {
     e.preventDefault()
     await addResource(form)
     props.setShowAdd(false)
-    setForm({
-      description: '',
-      url: '',
-      icon: '',
-      date: testDate, // TODO: Change to today's date
-      user_id: 2, // TODO: import current USER_ID
-    })
+    setForm({ ...form, description: '', url: '', icon: '' })
     props.loadResources()
   }
 
@@ -74,7 +69,7 @@ function AddResource(props) {
           ></input>
         </label>
         <img
-          src="images/addico.png"
+          src="../images/addico.png"
           className="inline ml-2 absolute right-1 bottom-1"
           alt="add"
           onClick={handleAddResourceButton}

@@ -13,7 +13,7 @@ export function addJournalByIdNDate(journal) {
   return request
     .post(`${rootUrl}/journal/${journal.user_id}/${journal.date}`)
     .send(journal)
-    .catch(logError)
+    .then((res) => res.body)
 }
 
 function logError(err) {

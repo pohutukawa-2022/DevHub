@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { addTodo } from '../../api/todos'
 
 function AddTodo(props) {
@@ -7,6 +8,7 @@ function AddTodo(props) {
   const loadTodos = props.loadTodos
   const [input, setInput] = useState('')
   const [clicked, setClicked] = useState(true)
+  const user = useSelector((state) => state.user)
 
   function handleChange(event) {
     setInput(event.target.value)
@@ -18,18 +20,19 @@ function AddTodo(props) {
       content: input,
       challenge_link: '',
       is_trello: false,
-      publish_date: new Date(),
+      publish_date: props.date,
+      created_by_id: Number(user.id)
     }
     const newUserTodo = {
       is_personal: true,
       is_done: false,
-      user_id: 2,
+      user_id: Number(user.id)
     }
 
     addTodo(newTodo, newUserTodo)
       .then(() => loadTodos())
       .catch(() => {})
-    setClicked(!clicked)
+    setClicked(false)
   }
   return (
     <>
@@ -42,7 +45,7 @@ function AddTodo(props) {
             name="newTodo"
           />
           <img
-            src="images/addico.png"
+            src="../images/addico.png"
             className="inline ml-2 absolute right-1 bottom-1"
             onClick={handleSubmit}
             alt="add"

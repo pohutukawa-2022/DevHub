@@ -3,21 +3,16 @@ import React, { useState, useEffect } from 'react'
 import AddAnnouncement from './AddAnnouncement'
 import {
   deleteAnnouncement,
-  getAnnouncementsByDate,
+  getAnnouncementsByDate
 } from '../../api/announcements'
 
-function Announcements() {
+function Announcements({ id, date }) {
   const [announcements, setAnnouncements] = useState([])
   const [showAdd, setShowAdd] = useState(false)
 
-  //TO DO make date dynamic
-  const testDate = new Date('September 7, 2022, 12:05:00')
-
   async function loadAnnouncements() {
     try {
-      const allAnnouncements = await getAnnouncementsByDate(
-        Date.parse(testDate)
-      )
+      const allAnnouncements = await getAnnouncementsByDate(Date.parse(date))
       setAnnouncements(allAnnouncements)
     } catch (error) {
       console.error(error.message)
@@ -30,7 +25,7 @@ function Announcements() {
 
   useEffect(() => {
     loadAnnouncements()
-  }, [])
+  }, [date])
 
   function handelDelete(id) {
     deleteAnnouncement(id)
@@ -45,24 +40,22 @@ function Announcements() {
         <ul className="text-vsorange">
           {announcements.map((announcement) => {
             return (
-              <>
-                <li key={announcement.id} className="flex text-vsorange">
-                  <a className="" href={announcement.url}>
-                    <img
-                      src="images/annico.png"
-                      className="inline mr-2 mb-1 w-4"
-                      alt="add"
-                    />
-                    {`${announcement.message}`}
-                  </a>
-                  {/* <button
+              <li key={announcement.id} className="flex text-vsorange">
+                <a className="" href={announcement.url}>
+                  <img
+                    src="../images/annico.png"
+                    className="inline mr-2 mb-1 w-4"
+                    alt="add"
+                  />
+                  {`${announcement.message}`}
+                </a>
+                {/* <button
                 className="text-red-700"
                 onClick={() => handelDelete(announcement.id)}
               >
                 DELETE
               </button> */}
-                </li>
-              </>
+              </li>
             )
           })}
         </ul>
@@ -72,6 +65,8 @@ function Announcements() {
           loadAnnouncements={loadAnnouncements}
           showAdd={showAdd}
           setShowAdd={setShowAdd}
+          id={id}
+          date={date}
         />
       </div>
     </>
