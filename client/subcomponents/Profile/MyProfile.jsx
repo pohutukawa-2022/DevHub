@@ -59,7 +59,7 @@ function MyProfile({ id }) {
             <br />
             <br />
             <div className="flex justify-center items-center">
-              <Link className="italic" to={`/${id}/myprofile/edit`}>
+              <Link className="italic" to={`/myprofile/edit`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -9,16 +9,23 @@ function Todos({ date }) {
   const [todos, setTodos] = useState([])
   const [showAdd, setShowAdd] = useState(false)
   const user = useSelector((state) => state.user)
+  const today = date.toDateString()
 
-  function loadTodos() {
-    getTodosByUserId(user.id)
-      .then((todos) => {
-        console.log(todos, 'here')
-        setTodos(todos)
-      })
-      .catch(() => {
-        return false
-      })
+  async function loadTodos() {
+    try {
+      const allTodos = await getTodosByUserId(user.id)
+      console.log(allTodos)
+      console.log(typeof today)
+      const todosByDate = allTodos
+        .map((todo) => {
+          let stringDate = new Date(todo.date).toDateString()
+          return { ...todo, date: stringDate }
+        })
+        .filter((todo) => todo.date === today)
+      setTodos(todosByDate)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {

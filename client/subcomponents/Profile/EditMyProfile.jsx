@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, redirect } from 'react-router-dom'
 import { getUserProfileInfo, editProfile } from '../../api/profiles'
 
-export default function EditMyProfile() {
-  const { id } = useParams()
+export default function EditMyProfile({ id }) {
   const [profilesInfo, setProfilesInfo] = useState([])
+  const navigate = useNavigate()
 
   async function getSpecificProfile(id) {
     try {
@@ -26,6 +26,7 @@ export default function EditMyProfile() {
   async function handleSubmit(e) {
     e.preventDefault()
     await editProfile(profilesInfo)
+    return redirect('/1234')
   }
 
   useEffect(() => {

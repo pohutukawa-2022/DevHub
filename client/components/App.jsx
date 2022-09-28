@@ -88,6 +88,10 @@ function App() {
                     element={<MyProfile id={user.id} />}
                   />
                   <Route path="/cohort" element={<Cohort />} />
+                  <Route
+                    path="/myprofile/edit"
+                    element={<EditMyProfile id={user.id} />}
+                  />
                 </Routes>
               </div>
             </div>
