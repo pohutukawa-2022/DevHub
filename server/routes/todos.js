@@ -33,7 +33,12 @@ router.get('/:id/:currentDate', async (req, res) => {
 
 // GET by user id
 router.get('/:id', async (req, res) => {
-  const userId = req.params.id
+  const userId = Number(req.params.id)
+  if (isNaN(userId)) {
+    res.status(500).json({ error: 'id must be a number!' })
+    return
+  }
+
   try {
     const todos = await db.getTodosByUserId(userId)
     res.json({ todos })

@@ -3,6 +3,7 @@ import request from 'superagent'
 const rootUrl = '/api/v1'
 
 export function getTodos() {
+  console.log('hitting rout gettodo')
   return request
     .get(`${rootUrl}/todos`)
     .then((res) => res.body.todos)
@@ -12,7 +13,9 @@ export function getTodos() {
 export function getTodosByUserId(userId) {
   return request
     .get(`${rootUrl}/todos/${userId}`)
-    .then((res) => res.body.todos)
+    .then((res) => {
+      res.json({ todos: res.body.todos })
+    })
     .catch(logError)
 }
 
@@ -44,7 +47,7 @@ export function updateTodo(todo, currentUserId, token) {
 }
 
 export function deleteTodo(id, token) {
- console.log ("from delete api", id)
+  console.log('from delete api', id)
   return request
     .delete(`${rootUrl}/todos/${id}`)
     .set('authorization', `Bearer ${token}`)
