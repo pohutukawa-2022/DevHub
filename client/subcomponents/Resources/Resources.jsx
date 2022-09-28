@@ -2,28 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { getAllResources, getResourcesByDate } from '../../api/resources'
 import AddResource from './AddResource'
 
-function Resources() {
+function Resources({ id, date }) {
   const [resources, setResources] = useState([])
   const [showAdd, setShowAdd] = useState(false)
-  // const [loading, setLoading] = useState(true)
-  // const [error, setError] = useState('')
-
-  // TODO: Change to today's date, now for testing purpose
-  const testDate = new Date('September 7, 2022, 12:05:00')
 
   async function loadResources() {
     try {
-      const allResources = await getResourcesByDate(Date.parse(testDate))
+      const allResources = await getResourcesByDate(Date.parse(date))
       setResources(allResources)
     } catch (error) {
       console.error(error.message)
     }
-    // setLoading(true)
-    // setError('')
-    // getAllResources()
-    //   .then((resource) => setResources(resource))
-    //   .finally(() => setLoading(false))
-    //   .catch((err) => console.error(err.message))
   }
 
   function showAddButton() {
@@ -32,10 +21,10 @@ function Resources() {
 
   useEffect(() => {
     loadResources()
-  }, [])
+  }, [date])
 
   function isUsers(id) {
-    if (id == 2) return true
+    if (id == resources.user_id) return true
     else return false
   }
 
@@ -54,7 +43,7 @@ function Resources() {
                 />
                 {`${resource.description} (by ${resource.first_name})`}
                 <img
-                  src="/images/deleteico.png"
+                  src="../images/deleteico.png"
                   className={`inline ml-2 mb-1 w-4 ${
                     !isUsers(resource.user_id) ? 'hidden' : ''
                   }`}
@@ -66,7 +55,7 @@ function Resources() {
         })}
       </ul>
       <img
-        src="images/addico.png"
+        src="../images/addico.png"
         className="absolute w-7 top-2 right-1"
         onClick={showAddButton}
         alt="add"
@@ -76,6 +65,8 @@ function Resources() {
         loadResources={loadResources}
         showAdd={showAdd}
         setShowAdd={setShowAdd}
+        id={id}
+        date={date}
       />
     </div>
   )

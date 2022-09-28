@@ -27,7 +27,7 @@ function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date('September 7, 2022, 12:05:00'))
   const [user, setUser] = useState({})
 
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -36,10 +36,8 @@ function App() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      console.log('37here')
       dispatch(clearLoggedInUser())
     } else {
-      console.log('else40')
       getAccessTokenSilently()
         .then((token) => getUser(token))
         .then((userInDb) => {
@@ -61,7 +59,7 @@ function App() {
 
   return (
     <>
-      <Nav></Nav>
+      <Nav />
       {loading ? (
         <p>Loading</p>
       ) : (
@@ -74,25 +72,25 @@ function App() {
                 currentTheme={currentTheme}
                 setCurrentTheme={setCurrentTheme}
               /> */}
-                <Nav />
+                <Nav date={date} setDate={setDate} />
                 <Routes>
                   <Route
                     path="/"
-                    element={<Navigate to={`/${user.id}/${date}`} />}
-                  />
-
-                  <Route
-                    path="/:id/:date"
                     element={
                       <>
-                        <Todos />
-                        <Announcments />
-                        <Resources />
+                        <Todos date={date} />
+                        <Announcments id={user.id} date={date} />
+                        <Resources id={user.id} date={date} />
                         <OnTheFloor />
-                        <Journals />
+                        <Journals id={user.id} date={date} />
                       </>
                     }
                   />
+                  <Route
+                    path="/myprofile"
+                    element={<MyProfile id={user.id} />}
+                  />
+                  <Route path="/cohort" element={<Cohort />} />
                 </Routes>
               </div>
             </div>

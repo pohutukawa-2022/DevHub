@@ -13,7 +13,7 @@ function Todo(props) {
     inTrello,
     isDone,
     isPersonal,
-    currentUserId,
+    currentUserId
   } = props.todo
 
   const loadTodos = props.loadTodos
@@ -21,7 +21,7 @@ function Todo(props) {
   function handleBoxChecked() {
     const newTodo = {
       ...props.todo,
-      isDone: !props.todo.isDone,
+      isDone: !props.todo.isDone
     }
 
     updateTodo(newTodo, currentUserId)
@@ -30,7 +30,6 @@ function Todo(props) {
   }
 
   function handleDelete() {
-   
     deleteTodo(user_todos_id)
       .then(() => loadTodos())
       .catch(() => {})
@@ -59,7 +58,7 @@ function Todo(props) {
         {!!inTrello && (
           <span className="">
             <img
-              src="images/trelloico.png"
+              src="../images/trelloico.png"
               className="inline ml-2 mb-1 w-4"
               alt="trello"
             />
@@ -70,7 +69,7 @@ function Todo(props) {
           <span className=" text-zinc-400">
             <img
               onClick={handleDelete}
-              src="images/deleteico.png"
+              src="../images/deleteico.png"
               className="inline ml-2 mb-1 w-4"
               alt="delete"
             />

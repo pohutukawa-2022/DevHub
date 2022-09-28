@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getUserProfileInfo } from '../../api/profiles'
 
-function MyProfile() {
-  const { id } = useParams()
-
+function MyProfile({ id }) {
   const [profilesInfo, setProfilesInfo] = useState([])
 
   async function getSpecificProfile(id) {

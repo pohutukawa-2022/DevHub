@@ -30,9 +30,9 @@ router.get('/:id/:date', async (req, res) => {
 
 router.post('/:id/:date', async (req, res) => {
   const newJournal = req.body
-
   try {
     await db.updateJournal(newJournal)
+    res.sendStatus(201)
   } catch (err) {
     console.error(err)
     res.status(500).send(err.message)

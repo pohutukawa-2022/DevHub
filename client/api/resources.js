@@ -17,6 +17,7 @@ export function getResourcesByDate(date) {
 }
 
 export function addResource(resource) {
+  console.log(resource)
   return request.post(`${rootUrl}/resources/`).send(resource).catch(logError)
 }
 
