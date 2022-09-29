@@ -26,7 +26,7 @@ export default function EditMyProfile({ id }) {
   async function handleSubmit(e) {
     e.preventDefault()
     await editProfile(profilesInfo)
-    return redirect('/1234')
+    return navigate('/1234')
   }
 
   useEffect(() => {

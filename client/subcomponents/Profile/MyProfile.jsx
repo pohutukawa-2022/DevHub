@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getUserProfileInfo } from '../../api/profiles'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function MyProfile({ id }) {
   const [profilesInfo, setProfilesInfo] = useState([])
+  const { logout } = useAuth0()
 
   async function getSpecificProfile(id) {
     try {
@@ -18,6 +19,11 @@ function MyProfile({ id }) {
     }
   }
 
+  function handleLogoff(e) {
+    e.preventDefault()
+    logout()
+  }
+
   useEffect(() => {
     getSpecificProfile(id)
   }, [])
@@ -29,7 +35,12 @@ function MyProfile({ id }) {
         <Link className="float-left text-vspink mx-2 my-1" to={`/cohort`}>
           Pōhutukawa Cohort
         </Link>
-        <button className="float-right text-vspink mx-2 my-1"> Log Out </button>
+        <Link to="/" onClick={handleLogoff}>
+          <button className="float-right text-vspink mx-2 my-1">
+            {' '}
+            Log Out{' '}
+          </button>
+        </Link>
       </div>
       {profilesInfo.map((profile) => {
         return (
@@ -76,12 +87,6 @@ function MyProfile({ id }) {
                 </svg>
               </Link>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
           </h1>
         )
       })}

@@ -58,7 +58,7 @@ function Journals({ id, date }) {
         />
         <form className={showAdd ? '' : 'hidden'}>
           <textarea
-            className={`form-control block w-full px-3 py-1.5 text-base font-normal
+            className={`w-5/6 form-control block w-full px-3 py-1.5 text-base font-normal
         text-black
         bg-white bg-clip-padding
         border border-solid border-gray-300
@@ -73,7 +73,12 @@ function Journals({ id, date }) {
             name="content"
             value={newJournal.content}
           ></textarea>
-          <button onClick={handleSubmit}>Add Entry</button>
+          <img
+            src="../images/addico.png"
+            className="inline ml-2 absolute right-2 bottom-3"
+            alt="add"
+            onClick={handleSubmit}
+          />
         </form>
       </div>
     </>
